@@ -6,13 +6,18 @@
 #define NAT_TYPE_PORT_REST  0x03
 #define NAT_TYPE_SYMMETRIC  0x04
 
+#define MAX_SESSIONS (1024 * 1024)      // 最大会话数
+#define SESSION_TIMEOUT 30              // 会话超时时间（秒）
+#define AGING_INTERVAL 1000000          // 老化检查间隔（微秒）
+#define SESSION_TIMEOUT 30              // 会话超时时间（秒）
+
 struct nat_tuple {
     uint32_t src_ip;
     uint32_t dst_ip;
     uint16_t src_port;
     uint16_t dst_port;
     uint8_t  protocol;
-    uint8_t  padding[3];         // 对齐
+    uint8_t  padding[3];                // 对齐
 } __attribute__((packed));
 
 /* 会话表项 */
